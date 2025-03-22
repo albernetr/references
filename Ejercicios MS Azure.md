@@ -101,5 +101,12 @@ Link: https://learn.microsoft.com/es-mx/training/modules/build-first-bicep-templ
 ```powershell
 az deployment group create --name main --template-file main.bicep --parameters environmentType=nonprod
 ```
-## Definición de los recursos con Bicep, las plantillas de ARM y el proveedor de AzAPI de Terraform
+## Ejercicio: Adición de parámetros y decoradores
+
+Duracion Espacio Aislado: 4 horas.
+
+https://learn.microsoft.com/es-mx/training/modules/build-reusable-bicep-templates-parameters/3-exercise-add-parameters-with-decorators?pivots=cli
+
+
+# Definición de los recursos con Bicep, las plantillas de ARM y el proveedor de AzAPI de Terraform
 https://learn.microsoft.com/es-es/azure/templates/
