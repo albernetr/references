@@ -107,6 +107,23 @@ Duracion Espacio Aislado: 4 horas.
 
 https://learn.microsoft.com/es-mx/training/modules/build-reusable-bicep-templates-parameters/3-exercise-add-parameters-with-decorators?pivots=cli
 
+## Ejercicio: Adición de un archivo de parámetros y de parámetros seguros Key Vault
+Duracion Espacio Aislado: 4 horas.
+[Ejercicio: Adición de un archivo de parámetros y de parámetros seguros](https://learn.microsoft.com/es-mx/training/modules/build-reusable-bicep-templates-parameters/6-exercise-create-use-parameter-files?pivots=cli)
+
+### Creacion de variables e ingreso de parametos para la creacion dinamica del key vault
+```powershell
+$keyVaultName = 'YOUR-KEY-VAULT-NAME'
+$login = Read-Host "Enter the login name" -AsSecureString
+$password = Read-Host "Enter the password" -AsSecureString
+
+New-AzKeyVault -VaultName $keyVaultName -Location eastus -EnabledForTemplateDeployment
+Set-AzKeyVaultSecret -VaultName $keyVaultName -Name 'sqlServerAdministratorLogin' -SecretValue $login
+Set-AzKeyVaultSecret -VaultName $keyVaultName -Name 'sqlServerAdministratorPassword' -SecretValue $password
+```
+
+______________________________________________________________________________________________________________
+
 ## ejecucion de plantilla con archivo de parametros
 ```powershell
 az deployment group create --template-file main.bicep --parameters main.parameters.json
