@@ -33,7 +33,12 @@ az account set --subscription {your subscription ID}
 ### Ver suscripcion activa
 ``` powershell
 az account show
-``` 
+```
+### Ver Todas las Suscripciones disponibles
+
+```powershell
+az account list --output table
+```
 
 ### Establecer Grupo de Recursos
 
