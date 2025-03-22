@@ -42,7 +42,7 @@ az account list --output table
 
 ### Establecer Grupo de Recursos
 
-az configure --defaults group="learn-3b7e7e75-4a87-4753-bd7a-c6020cd11a73"
+az configure --defaults group="learn-22f3d21a-7013-4d18-be25-a32250167693"
 
 ## Rutas de apredizaje
 
@@ -91,5 +91,14 @@ az deployment group create --name main --template-file main.bicep
 ```powershell
 az deployment group list --output table
 ```
+## Ejercicio: Adición de parámetros y variables a la plantilla de Bicep
 
+Duracion Espacio Aislado: 4 horas.
+
+Link: https://learn.microsoft.com/es-mx/training/modules/build-first-bicep-template/6-exercise-add-parameters-variables-bicep-template?pivots=cli
+
+### Desplegar plantilla con parametros
+```powershell
+az deployment group create --name main --template-file main.bicep --parameters environmentType=nonprod
+```
 
