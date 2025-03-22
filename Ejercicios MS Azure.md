@@ -9,8 +9,10 @@ https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
 ### Instalazion AZD
 Desde powershell ejecutar: 
 
-``` Invoke-WebRequest -Uri https://aka.ms/install-azd.ps1 -OutFile install-azd.ps1
-.\install-azd.ps1 ```
+```powershell
+Invoke-WebRequest -Uri https://aka.ms/install-azd.ps1 -OutFile install-azd.ps1
+.\install-azd.ps1
+```
 
 ### Login
 az login
