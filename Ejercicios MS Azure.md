@@ -112,6 +112,8 @@ Duracion Espacio Aislado: 4 horas.
 [Ejercicio: Adición de un archivo de parámetros y de parámetros seguros](https://learn.microsoft.com/es-mx/training/modules/build-reusable-bicep-templates-parameters/6-exercise-create-use-parameter-files?pivots=cli)
 
 ### Creacion de variables e ingreso de parametos para la creacion dinamica del key vault
+
+Powershell
 ```powershell
 $keyVaultName = 'YOUR-KEY-VAULT-NAME'
 $login = Read-Host "Enter the login name" -AsSecureString
@@ -121,7 +123,23 @@ New-AzKeyVault -VaultName $keyVaultName -Location eastus -EnabledForTemplateDepl
 Set-AzKeyVaultSecret -VaultName $keyVaultName -Name 'sqlServerAdministratorLogin' -SecretValue $login
 Set-AzKeyVaultSecret -VaultName $keyVaultName -Name 'sqlServerAdministratorPassword' -SecretValue $password
 ```
+Azure Cli
 
+```powershell
+keyVaultName='YOUR-KEY-VAULT-NAME'
+read -s -p "Enter the login name: " login
+read -s -p "Enter the password: " password
+
+az keyvault create --name $keyVaultName --location eastus --enabled-for-template-deployment true
+az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorLogin" --value $login --output none
+az keyvault secret set --vault-name $keyVaultName --name "sqlServerAdministratorPassword" --value $password --output none
+```
+### Obtención del identificador de recurso del almacén de claves
+Para usar los secretos del almacén de claves en la implementación, necesita el identificador de recurso del almacén. Ejecute el siguiente comando para recuperar el identificador de recurso del almacén de claves:
+
+```powershell
+az keyvault show --name $keyVaultName --query id --output tsv
+```
 ______________________________________________________________________________________________________________
 
 ## ejecucion de plantilla con archivo de parametros
