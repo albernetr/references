@@ -20,7 +20,8 @@ az login
 ### Busqueda suscripcion de trabajo
 Obtenga los identificadores de la Suscripción de Concierge.
 
-``` az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table 
+```powershell
+az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table 
 ```
 
 ### Establezca la suscripción predeterminada con el identificador de la suscripción. 
