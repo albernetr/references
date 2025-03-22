@@ -113,6 +113,7 @@ Duracion Espacio Aislado: 4 horas.
 
 ### Creacion de variables e ingreso de parametos para la creacion dinamica del key vault
 
+Region disponible para SQL Server: westus3
 Powershell
 ```powershell
 $keyVaultName = 'YOUR-KEY-VAULT-NAME'
