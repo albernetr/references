@@ -87,5 +87,9 @@ az deployment group create --name main --template-file {nombre del archivo bicep
 ```powershell
 az deployment group create --name main --template-file main.bicep
 ```
+###  verificar la implementación desde la línea de comandos
+```powershell
+az deployment group list --output table
+```
 
 
