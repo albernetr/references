@@ -3,13 +3,22 @@
 
 ## Configuracion de ambiente y seleccion de suscripciones
 
+### install the Azure CLI
+https://learn.microsoft.com/en-us/cli/azure/install-azure-cli
+
+### Instalazion AZD
+Desde powershell ejecutar: 
+
+``` Invoke-WebRequest -Uri https://aka.ms/install-azd.ps1 -OutFile install-azd.ps1
+.\install-azd.ps1 ```
+
 ### Login
 az login
 
 ### Busqueda suscripcion de trabajo
 Obtenga los identificadores de la Suscripción de Concierge.
 
-az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table
+```az account list --refresh --query "[?contains(name, 'Concierge Subscription')].id" --output table```
 
 ### Establezca la suscripción predeterminada con el identificador de la suscripción. 
 
