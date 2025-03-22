@@ -32,6 +32,12 @@ https://learn.microsoft.com/es-mx/training/paths/az-104-manage-compute-resources
 ### Aspectos básicos de Bicep
 https://learn.microsoft.com/es-mx/training/paths/fundamentals-bicep/
 
+### Create agents in Microsoft Copilot Studio
+https://learn.microsoft.com/en-us/training/paths/create-extend-custom-copilots-microsoft-copilot-studio/
+
+### Create copilots with Microsoft Copilot Studio
+https://learn.microsoft.com/en-us/training/paths/work-power-virtual-agents/
+
 
 
 ## Definición de recursos en una plantilla de Bicep
