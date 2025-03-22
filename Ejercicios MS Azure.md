@@ -8,5 +8,10 @@ Descripcion: En este ejercicio, creará una cuenta de almacenamiento, un plan de
 
 Url: https://learn.microsoft.com/es-mx/training/modules/build-first-bicep-template/4-exercise-define-resources-bicep-template?pivots=powershell
 
+### Instalación de herramientas de Bicep
 
+https://learn.microsoft.com/es-es/azure/azure-resource-manager/bicep/install?tabs=azure-powershell#azure-powershell
+
+### Agregar Bicep al paht de la terminal
+$env:Path += ";$($env:LOCALAPPDATA)\Programs\Bicep CLI"
 
