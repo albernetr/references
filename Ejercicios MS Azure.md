@@ -1,5 +1,6 @@
 # Ejercicios y Espacios Aislados MS Azure
 
+
 ## Configuracion de ambiente y seleccion de suscripciones
 
 ### Login
@@ -20,6 +21,16 @@ az account set --subscription {your subscription ID}
 
 az configure --defaults group="learn-3b7e7e75-4a87-4753-bd7a-c6020cd11a73"
 
+## Rutas de apredizaje
+
+### Implement knowledge mining with Azure AI Search
+https://learn.microsoft.com/en-us/training/paths/implement-knowledge-mining-azure-cognitive-search/
+
+### AZ-104: Implementación y administración de recursos de procesos de Azure
+https://learn.microsoft.com/es-mx/training/paths/az-104-manage-compute-resources/
+
+### Aspectos básicos de Bicep
+https://learn.microsoft.com/es-mx/training/paths/fundamentals-bicep/
 
 
 
@@ -37,4 +48,10 @@ https://learn.microsoft.com/es-es/azure/azure-resource-manager/bicep/install?tab
 
 ### Agregar Bicep al paht de la terminal
 $env:Path += ";$($env:LOCALAPPDATA)\Programs\Bicep CLI"
+
+### Implementación de la plantilla en Azure
+az deployment group create --name main --template-file {nombre del archivo bicep}
+
+#### Ejemplo
+az deployment group create --name main --template-file main.bicep
 
