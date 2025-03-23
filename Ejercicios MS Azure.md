@@ -141,6 +141,10 @@ Para usar los secretos del almacén de claves en la implementación, necesita el
 ```powershell
 az keyvault show --name $keyVaultName --query id --output tsv
 ```
+## Ejercicio: Uso de bucles de variables y de salidas
+Horas: 
+
+link: https://learn.microsoft.com/es-mx/training/modules/build-flexible-bicep-templates-conditions-loops/8-exercise-loops-variables-outputs?pivots=cli
 ______________________________________________________________________________________________________________
 
 ## ejecucion de plantilla con archivo de parametros
