@@ -1,4 +1,4 @@
-# Ejercicios y Espacios Aislados MS Azure
+# Notas  IaC  con MS Azure y Bicep Modulo 1
 
 
 ## Configuracion de ambiente y seleccion de suscripciones
@@ -145,6 +145,12 @@ az keyvault show --name $keyVaultName --query id --output tsv
 Horas: 
 
 link: https://learn.microsoft.com/es-mx/training/modules/build-flexible-bicep-templates-conditions-loops/8-exercise-loops-variables-outputs?pivots=cli
+
+## Ejercicio: Creación y uso de un módulo
+
+Horas:
+
+https://learn.microsoft.com/es-mx/training/modules/create-composable-bicep-files-using-modules/4-exercise-create-use-module?pivots=cli
 ______________________________________________________________________________________________________________
 
 ## ejecucion de plantilla con archivo de parametros
