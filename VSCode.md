@@ -45,7 +45,8 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 # Snipped
 
 F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
-´´´
+
+´´´ 
 {
   "nombre funcionalidad a presentar": {
       "prefix": "nombre_emet",
