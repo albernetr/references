@@ -46,7 +46,7 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 
 F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
 
-´´´ 
+```powershell
 {
   "nombre funcionalidad a presentar": {
       "prefix": "nombre_emet",
@@ -58,5 +58,5 @@ F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
       "description": "Descripción de la función"
   }
 }
-´´´
+```
   
