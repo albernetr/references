@@ -42,4 +42,18 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 
   Personalizar atajos de teclado F1 -> "Open Keyboard Shortcuts
 
+# Snipped
+
+F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
+{
+  "nombre funcionalidad a presentar": {
+      "prefix": "nombre_emet",
+      "body": [
+        // codigo a insertar
+        "Console.Wrhite($1:nombre_guia_parametro)",
+        "$2"
+      ],
+      "description": "Descripción de la función"
+  }
+}
   
