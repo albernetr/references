@@ -59,4 +59,7 @@ F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
   }
 }
 ```
+
+- configuracion en usersetting para que los snippets se muestren de primeros 
+"snippets.sugestion": "top"
   
