@@ -62,4 +62,20 @@ F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
 
 - configuracion en usersetting para que los snippets se muestren de primeros 
 "snippets.sugestion": "top"
+- Ruta de los snippets: <user>/AppData/Toaming/User/Snippets
+
+
+# EMMET
+
+- ul>li - Crea una etiqueta ul y dentro del ul un li
+- ul>li*4>a crea un ul con 4 li que contienen un a
+- ul>(li>a)*4 Crea primero el ul, luego el li con la a adentro y lo repite 4 veces. Da el mismo resultado del anterior, pero la contruccion interna es diferente.
+- ul.link Agrega la clase link al elemento ul
+- ul#link Asingna el id link al ul
+- ul{contenido} agrega el contenido dentro de las llaves al contenido del ul
+- ul>li*4{contenido $} al contenido lo numera en orden del 1 al 4
+- 
+- 
+
+  
   
