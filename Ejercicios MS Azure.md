@@ -61,7 +61,8 @@ https://learn.microsoft.com/en-us/training/paths/create-extend-custom-copilots-m
 ### Create copilots with Microsoft Copilot Studio
 https://learn.microsoft.com/en-us/training/paths/work-power-virtual-agents/
 
-
+### Azure OpenAI (laboratorio)
+https://learn.microsoft.com/es-es/training/modules/develop-applications-openai/7-exercise
 
 ## Definición de recursos en una plantilla de Bicep
 
