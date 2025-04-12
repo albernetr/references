@@ -30,6 +30,7 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 - Better Comments
 - Tailwind CSS IntelliSense
 - Pretty TypeScript Errors
+- JavaScript and TypeScript Nightly
 
 # Extensiones Chrome
 - Angular DevTools
