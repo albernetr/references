@@ -31,7 +31,7 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 - Tailwind CSS IntelliSense
 - Pretty TypeScript Errors
 
-#Extensiones Chrome
+# Extensiones Chrome
 - Angular DevTools
 - Json Viewer Awesome
 
