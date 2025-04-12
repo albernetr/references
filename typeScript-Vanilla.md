@@ -5,7 +5,7 @@ npm create vite@latest
 npm run dev
 
 # Creacion de constantes
-const <name>: >data-type> [= <value>];
+const <name>: <data-type> [= <value>];
 
 ```
  const name = 'Leon';
