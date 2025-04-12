@@ -16,6 +16,21 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 
 - indent-rainbow (Muestra la identacion del codigo)
 - Live server (Levanta un servidor html virtual)
+- Angular Language Service
+- Angular Snippets
+- Angular Schematics
+- Angular 2 Inline
+- Auto Close Tag
+- Auto import
+- Auto Rename Tag
+- Error Lens
+- Paste JSON as Code
+- TypeScript Importer - optional
+- Editor Config for VSCode
+- Better Comments
+- Tailwind CSS IntelliSense
+- Pretty TypeScript Errors
+- 
 
 # Utilidades
 
