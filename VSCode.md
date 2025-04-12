@@ -12,7 +12,7 @@ C:\Users\<usuario>\AppData\Roaming\Code
 ## hacer que una linea se adapte al contenido de la ventana
 f1 --> "Settings" --> opc "Toggle Word Wrap"
 
-# Extensiones
+# Extensiones VSCode
 
 - indent-rainbow (Muestra la identacion del codigo)
 - Live server (Levanta un servidor html virtual)
@@ -30,7 +30,11 @@ f1 --> "Settings" --> opc "Toggle Word Wrap"
 - Better Comments
 - Tailwind CSS IntelliSense
 - Pretty TypeScript Errors
-- 
+
+#Extensiones Chrome
+- Angular DevTools
+- Json Viewer Awesome
+
 
 # Utilidades
 
