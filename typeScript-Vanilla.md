@@ -24,8 +24,12 @@ let  \<name\>: \<data-type\> [= \<value\>];
 # Creacion de Variables con multiples tipos o valores damisibles.
 
 let  \<name\>: \<data-type\> | \<data-type1\>  [= \<value\>];
+
 let  \<name\>: \<data-type\> | \<value\>  [= \<value\>];
+
 let  \<name\>: \<value\> | \<value_1\> | \<value_n\>   [= \<value\>];
+
+
 
 
 
