@@ -126,3 +126,28 @@ azd down       # Elimina lo desplegado
 | 48 | kusto            | Consulta de datos con KQL (Kusto Query Language)             | Monitor, Log Analytics, App Insights                 | `cluster create`, `database create`                     | Azure Data Explorer                           |
 | 49 | synapse          | Integración de big data, DWH y Spark                         | Arquitectura moderna de análisis de datos            | `workspace create`, `spark pool list`                   | Azure Synapse Analytics                       |
 | 50 | purview          | Gobierno y catálogo de datos empresariales                   | Cumplimiento, linaje de datos                        | `account create`, `scan create`, `classification list`  | Microsoft Purview                             |
+
+# 📘 Grupos adicionales relevantes en Azure CLI (51+)
+
+| #  | Grupo           | Descripción                                                  | Justificación / Cuándo usarlo                        | Nombre en el Portal                      |
+|----|------------------|--------------------------------------------------------------|------------------------------------------------------|-------------------------------------------|
+| 51 | batch            | Procesamiento batch a gran escala                            | Tareas paralelas masivas (render, ciencia, etc.)     | Azure Batch                               |
+| 52 | sentinel         | SIEM y análisis de seguridad                                 | Detección de amenazas centralizada                   | Microsoft Sentinel                        |
+| 53 | quantum          | Recursos de computación cuántica                             | Investigación y simulación                           | Azure Quantum                             |
+| 54 | vmss             | Conjuntos de escalado automático de VMs                      | Escalado horizontal automatizado                     | Conjuntos de escalado de máquinas virtuales |
+| 55 | netappfiles      | Almacenamiento empresarial de alto rendimiento               | Migraciones de SAP, Oracle, etc.                     | Azure NetApp Files                        |
+| 56 | sap              | SAP en Azure                                                 | Despliegues certificados para entornos SAP HANA      | SAP en Azure                              |
+| 57 | disk             | Discos gestionados (separados de VMs)                        | Alta disponibilidad, snapshots, performance tuning   | Discos administrados                      |
+| 58 | managed-cassandra| Cassandra gestionado                                         | NoSQL compatible con Cassandra                       | Azure Managed Instance for Apache Cassandra |
+| 59 | maps-gen2        | API avanzada para mapas                                      | Versión más reciente de Azure Maps                   | Azure Maps (Gen2)                         |
+| 60 | communication    | Servicios de comunicación (SMS, chat, voz)                   | Azure Communication Services                         | Azure Communication Services              |
+| 61 | mobile-network   | Redes móviles privadas (5G)                                  | Edge computing y soluciones IoT industriales         | Mobile Network                             |
+| 62 | peering          | Conexión privada entre redes (ISP, Azure)                    | Baja latencia entre Azure y tus sistemas físicos     | Azure Peering                             |
+| 63 | express-route    | Conexión privada física a Azure                              | Alta seguridad, compliance                           | Azure ExpressRoute                        |
+| 64 | relay            | Comunicación punto-a-punto segura                            | Sustituye a VPN ligera entre apps remotas            | Azure Relay                               |
+| 65 | databricks       | Plataforma de ciencia de datos y ML colaborativa             | Procesamiento Spark, notebooks, pipelines de datos   | Azure Databricks                          |
+| 66 | dms              | Servicio de migración de bases de datos                      | Migrar SQL Server, Oracle, PostgreSQL, etc.          | Database Migration Service                |
+| 67 | recoveryservices | Almacén para backups y recuperación ante desastres           | Respaldos automáticos, restauraciones rápidas        | Recovery Services vaults                  |
+| 68 | webpubsub        | Publicación y suscripción en tiempo real para websockets     | Comunicación WebSocket bidireccional                 | Web PubSub                                |
+| 69 | datafactory      | ETL/ELT: integración y movimiento de datos                   | Pipelines de ingestión de datos                      | Azure Data Factory                        |
+| 70 | support-mgmt     | Gestión avanzada de soporte empresarial                      | Acceso a contratos y solicitudes                     | Soporte técnico empresarial               |
