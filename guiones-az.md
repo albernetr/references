@@ -95,6 +95,7 @@ COPY . .
 # Ejecutar la app con Uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
 EOF
+```
 
 # 6. Construir imagen Docker, probarla localmente y subirla a ACR
 
@@ -118,6 +119,7 @@ az acr login --name "$ACR_NAME"
 
 # 4. Subir imagen al ACR
 docker push "$FULL_IMAGE"
+```
 
 # 7. Desplegar imagen desde ACR en Azure Container Instances (ACI)
 
@@ -152,4 +154,4 @@ az container create \
 
 # 3. Verificar el estado de despliegue
 az container show --resource-group "$RG" --name "$ACI_NAME" --output table
-
+```
