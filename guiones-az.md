@@ -53,6 +53,7 @@ az acr create \
 
 # C. Obtener el login server (URL del ACR)
 az acr show --name "$ACR_NAME" --query "loginServer" --output tsv
+```
 
 # 5. Crear proyecto FastAPI personalizado con Alpine y Dockerfile
 
