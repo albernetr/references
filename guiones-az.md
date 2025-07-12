@@ -33,4 +33,24 @@ RG="nombre-del-grupo"
 az resource list --resource-group "$RG" --output table
 
 ```
+# 4. Crear grupo de recursos y Azure Container Registry (ACR)
+
+```bash
+# Variables
+RG="demo-fastapi-rg"
+LOCATION="eastus"
+ACR_NAME="acrfastapi$RANDOM"  # El nombre debe ser único a nivel global
+
+# A. Crear grupo de recursos
+az group create --name "$RG" --location "$LOCATION"
+
+# B. Crear registro de contenedor (ACR)
+az acr create \
+  --resource-group "$RG" \
+  --name "$ACR_NAME" \
+  --sku Basic \
+  --admin-enabled true
+
+# C. Obtener el login server (URL del ACR)
+az acr show --name "$ACR_NAME" --query "loginServer" --output tsv
 
