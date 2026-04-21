@@ -1,0 +1,653 @@
+# Guía Detallada — Flujo Completo con Agentes para GitHub Copilot + Repositorio Profesional
+
+## Objetivo
+
+Definir un **flujo operativo completo** para trabajar con:
+
+- GitHub Copilot en IDE
+- GitHub Copilot a nivel de repositorio
+- specs como fuente de verdad
+- instrucciones persistentes
+- skills
+- prompt files
+- custom agents
+- cloud agent cuando esté disponible
+- agent mode local cuando cloud agent no esté disponible
+
+Esta guía está pensada para trabajo profesional, en equipo, con trazabilidad y buenas prácticas desde el inicio.
+
+---
+
+# 1. Principios del sistema
+
+## 1.1 Fuente única de verdad
+
+El flujo debe apoyarse en esta jerarquía:
+
+1. `AGENTS.md` → reglas generales y operativas del repositorio
+2. `.github/copilot-instructions.md` → resumen repo-wide para Copilot
+3. `.github/instructions/*.instructions.md` → instrucciones específicas por ruta o tipo de archivo
+4. `docs/specs/<id>/` → trabajo por iniciativa
+5. `.github/skills/` → procedimientos especializados y reutilizables
+6. `prompt files` → prompts reutilizables para tareas concretas
+7. `custom agents` → agentes especializados para workflows concretos
+
+## 1.2 Regla de oro
+
+No trabajar con prompts vagos como:
+
+- "arregla esto"
+- "mira el repo"
+- "haz el feature"
+
+Siempre usar:
+
+- contexto
+- objetivo
+- alcance
+- validación
+- referencia a spec
+- referencia a reglas del repo
+
+Ejemplo correcto:
+
+```text
+Implement docs/specs/004-auth-refresh/spec.md following AGENTS.md and repository instructions. Keep diffs minimal and summarize validation steps before finishing.
+```
+
+---
+
+# 2. Arquitectura general del flujo
+
+## 2.1 Capas
+
+### Capa A — Gobernanza del repo
+Archivos y reglas permanentes del proyecto.
+
+### Capa B — Trabajo estructurado
+Specs, tareas, validación, decisiones.
+
+### Capa C — Instrucciones para Copilot
+Repository instructions, path-specific instructions, skills y prompts.
+
+### Capa D — Ejecución
+IDE agent mode, Copilot Chat, Copilot CLI o cloud agent.
+
+---
+
+# 3. Estructura recomendada del repositorio
+
+```text
+repo/
+├─ AGENTS.md
+├─ README.md
+├─ CONTRIBUTING.md
+├─ SECURITY.md
+├─ CODE_OF_CONDUCT.md
+├─ CHANGELOG.md
+├─ .github/
+│  ├─ copilot-instructions.md
+│  ├─ CODEOWNERS
+│  ├─ PULL_REQUEST_TEMPLATE.md
+│  ├─ ISSUE_TEMPLATE/
+│  │  ├─ bug_report.yml
+│  │  └─ feature_request.yml
+│  ├─ instructions/
+│  │  ├─ backend.instructions.md
+│  │  ├─ frontend.instructions.md
+│  │  ├─ tests.instructions.md
+│  │  └─ docs.instructions.md
+│  ├─ skills/
+│  │  ├─ implement-feature/
+│  │  │  ├─ SKILL.md
+│  │  │  └─ checklist.md
+│  │  ├─ fix-bug/
+│  │  │  ├─ SKILL.md
+│  │  │  └─ checklist.md
+│  │  ├─ review-pr/
+│  │  │  └─ SKILL.md
+│  │  └─ create-tests/
+│  │     └─ SKILL.md
+│  ├─ prompts/
+│  │  ├─ create-spec.prompt.md
+│  │  ├─ review-code.prompt.md
+│  │  └─ generate-tests.prompt.md
+│  └─ workflows/
+│     └─ ci.yml
+├─ docs/
+│  ├─ architecture/
+│  ├─ decisions/
+│  ├─ onboarding/
+│  └─ specs/
+│     ├─ 001-example/
+│     │  ├─ spec.md
+│     │  ├─ tasks.md
+│     │  └─ validation.md
+│     └─ 004-auth-refresh/
+│        ├─ spec.md
+│        ├─ tasks.md
+│        └─ validation.md
+├─ src/
+└─ tests/
+```
+
+---
+
+# 4. Qué hace cada componente
+
+## 4.1 `AGENTS.md`
+Es la constitución del repositorio.
+
+Debe incluir:
+- propósito del sistema
+- stack
+- cómo correr el proyecto
+- cómo validar cambios
+- restricciones
+- convenciones de arquitectura
+- política de cambios mínimos
+- referencia a specs
+
+### Ejemplo mínimo
+
+```md
+# AGENTS.md
+
+## Repository purpose
+Production-grade backend for internal platform workflows.
+
+## Stack
+- Node.js
+- NestJS
+- PostgreSQL
+- Prisma
+
+## Rules
+- Preserve architecture layers
+- Prefer minimal diffs
+- Do not introduce frameworks without explicit justification
+- Read relevant spec before editing
+
+## Validation
+Run:
+- npm run lint
+- npm run test
+- npm run build
+
+## Specs
+For significant work, use docs/specs/<id>/.
+```
+
+---
+
+## 4.2 `.github/copilot-instructions.md`
+Resumen corto y persistente para Copilot.
+
+Debe contener:
+- cómo trabajar en el repo
+- cómo validar
+- cómo respetar arquitectura
+- cómo usar specs
+
+### Ejemplo
+
+```md
+This is a production-oriented repository.
+
+Before making changes:
+1. Read AGENTS.md and relevant docs.
+2. Prefer minimal, reviewable diffs.
+3. Preserve the current architecture unless explicitly asked to refactor.
+4. If a spec exists in docs/specs, follow it.
+5. Suggest validation commands before finishing.
+```
+
+---
+
+## 4.3 `.github/instructions/*.instructions.md`
+Instrucciones específicas por ruta o tipo de archivo.
+
+Se usan para decirle a Copilot:
+- cómo trabajar en backend
+- cómo trabajar en frontend
+- cómo escribir tests
+- cómo documentar
+
+### Ejemplo `backend.instructions.md`
+
+```md
+---
+applyTo: "src/backend/**/*.ts"
+---
+
+Use dependency injection patterns already present in the codebase.
+Avoid introducing new global state.
+Keep service boundaries explicit.
+Add or update tests when behavior changes.
+```
+
+### Ejemplo `tests.instructions.md`
+
+```md
+---
+applyTo: "tests/**/*,**/*.spec.ts"
+---
+
+Prefer deterministic tests.
+Avoid network access in unit tests.
+Mock external integrations explicitly.
+Keep tests readable and focused on behavior.
+```
+
+---
+
+## 4.4 `docs/specs/<id>/`
+Cada iniciativa importante debe tener:
+- `spec.md`
+- `tasks.md`
+- `validation.md`
+
+### `spec.md`
+Debe responder:
+- problema
+- objetivo
+- alcance
+- no alcance
+- criterios de aceptación
+- áreas afectadas
+
+### `tasks.md`
+Debe listar:
+- tareas técnicas
+- secuencia
+- dependencias
+- checklist
+
+### `validation.md`
+Debe listar:
+- pruebas
+- riesgos
+- validaciones manuales
+- rollback si aplica
+
+---
+
+## 4.5 `.github/skills/`
+Las skills deben usarse para tareas repetibles y especializadas:
+- implementar un feature desde spec
+- corregir bug
+- revisar PR
+- crear tests
+- documentar cambios
+
+### Ejemplo `implement-feature/SKILL.md`
+
+```md
+---
+name: implement-feature
+description: Implement a feature from a repository spec using minimal safe diffs
+---
+
+When this skill is used:
+1. Read AGENTS.md
+2. Read the referenced spec folder
+3. Propose a short execution plan
+4. Implement the feature in coherent slices
+5. Run or suggest validation commands
+6. Summarize changed files, risks, and follow-ups
+```
+
+---
+
+## 4.6 Prompt files
+Úsalos para tareas concretas y reusables, por ejemplo:
+- crear spec
+- revisar código
+- generar tests
+- auditar deuda técnica
+
+### Ejemplo `create-spec.prompt.md`
+
+```md
+Create a production-grade implementation spec for the requested work.
+
+Include:
+- problem
+- goal
+- in scope
+- out of scope
+- architecture impact
+- acceptance criteria
+- technical tasks
+- validation
+```
+
+---
+
+## 4.7 Custom agents
+Úsalos cuando quieras perfiles especializados y reutilizables.
+
+Ejemplos de agentes útiles:
+- **Implementation Planner** → diseña el plan de trabajo antes de tocar código
+- **Bug Fix Teammate** → diagnostica y corrige bugs con cambios mínimos
+- **Cleanup Specialist** → paga deuda técnica y limpieza
+- **Test Builder** → crea o mejora tests
+- **Docs Maintainer** → actualiza documentación y changelog
+
+---
+
+# 5. Flujo operativo completo con agentes
+
+## 5.1 Flujo base de una iniciativa
+
+### Paso 1 — Crear issue
+El issue debe describir la iniciativa y apuntar a un spec.
+
+Ejemplo:
+- Title: `Refactor auth refresh flow`
+- Body: resumen del problema, objetivo y referencia a `docs/specs/004-auth-refresh/`
+
+### Paso 2 — Crear spec
+Estructura:
+
+```text
+docs/specs/004-auth-refresh/
+  spec.md
+  tasks.md
+  validation.md
+```
+
+### Paso 3 — Refinar con Copilot
+Usa un prompt o agente para mejorar el spec antes de tocar código.
+
+Ejemplo:
+```text
+Review docs/specs/004-auth-refresh/spec.md and improve clarity, scope and acceptance criteria without changing the intent.
+```
+
+### Paso 4 — Ejecutar en IDE agent mode
+Cuando el cambio sea pequeño o mediano, o necesites iterar localmente:
+- leer `AGENTS.md`
+- leer el spec
+- proponer plan
+- implementar por slices
+- validar localmente
+
+Ejemplo:
+```text
+Implement docs/specs/004-auth-refresh/spec.md following AGENTS.md and repository instructions. Keep changes minimal and tell me what validation to run.
+```
+
+### Paso 5 — Usar skills cuando haga sentido
+Ejemplo:
+- skill `implement-feature`
+- skill `fix-bug`
+- skill `create-tests`
+
+### Paso 6 — Abrir PR con contexto
+El PR debe referenciar:
+- issue
+- spec
+- validación
+- riesgos
+
+### Paso 7 — Review humana
+Siempre revisar:
+- arquitectura
+- seguridad
+- naming
+- impacto transversal
+- si el spec realmente quedó satisfecho
+
+---
+
+## 5.2 Cuándo usar cada superficie
+
+### Copilot Chat normal
+Úsalo para:
+- preguntas
+- exploración rápida
+- revisión de una función o archivo
+- aclarar conceptos
+
+### Edit / inline / next edit suggestions
+Úsalo para:
+- cambios puntuales
+- pequeñas mejoras
+- renombres
+- edición rápida y controlada
+
+### Agent mode en IDE
+Úsalo para:
+- trabajo multiarchivo
+- correr validaciones
+- corregir errores iterativamente
+- implementar tareas de alcance medio
+
+### Copilot CLI
+Úsalo cuando:
+- trabajas mucho en terminal
+- quieres prompts integrados a flujo CLI
+- necesitas scripts, comandos o automatización local
+
+### Cloud agent
+Úsalo cuando esté disponible para:
+- research de repositorio
+- planes de implementación
+- refactors de backlog
+- scaffold inicial
+- mejoras de tests
+- documentación en background
+- PRs generados en GitHub
+
+---
+
+# 6. Política recomendada de uso de agentes
+
+## 6.1 No delegar a agentes sin estructura
+Nunca mandar tareas grandes sin:
+- issue
+- spec
+- reglas del repo
+- validación esperada
+
+## 6.2 Sí delegar cuando el trabajo esté acotado
+Ejemplos buenos:
+- mejorar tests de un módulo
+- scaffold de una integración
+- refactor encapsulado
+- actualización de docs
+- limpieza de warnings
+- análisis de deuda técnica
+
+## 6.3 No usar agentes para decisiones críticas sin revisión
+Ejemplos:
+- rediseño de arquitectura
+- cambios de seguridad
+- contratos públicos
+- cambios de permisos/roles
+- cambios en CI/CD productivo
+- migraciones delicadas
+
+---
+
+# 7. Flujo específico recomendado para tu caso
+
+Dado que tu realidad actual es:
+- Copilot IDE activo
+- agent mode activo en IDE
+- cloud agent posiblemente limitado por política o cuota
+- partner agents variables según cuota
+
+Tu flujo ideal es este:
+
+## 7.1 Trabajo diario
+- **IDE + Copilot** como interfaz principal
+- `AGENTS.md` y `.github/copilot-instructions.md` para persistencia
+- specs para trabajo importante
+- path-specific instructions para backend/frontend/tests
+
+## 7.2 Trabajo estructurado
+- Issue → spec → implementación → PR
+- skills para tareas repetidas
+- prompt files para operaciones frecuentes
+
+## 7.3 Trabajo en background
+- cuando cloud agent esté disponible, delegar research, planning y scaffold
+- si no lo está, usar IDE agent mode con prompts estructurados y trabajo por slices
+
+---
+
+# 8. Ejemplos de prompts buenos
+
+## 8.1 Crear plan sin tocar código
+```text
+Read AGENTS.md and docs/specs/004-auth-refresh/spec.md. Propose a short implementation plan. Do not modify code yet.
+```
+
+## 8.2 Implementar con cambios mínimos
+```text
+Implement docs/specs/004-auth-refresh/spec.md following repository instructions. Preserve architecture, keep diffs minimal, and summarize the changed files and validation steps.
+```
+
+## 8.3 Corregir bug
+```text
+Investigate the failing auth refresh flow. Read AGENTS.md, identify root cause first, then apply the smallest safe fix and explain validation steps.
+```
+
+## 8.4 Mejorar tests
+```text
+Review the tests related to auth refresh. Add only the missing tests needed to validate the spec, keeping the suite deterministic and readable.
+```
+
+## 8.5 Revisar PR
+```text
+Review this change against docs/specs/004-auth-refresh/spec.md and AGENTS.md. Identify architecture, naming, validation, and risk issues.
+```
+
+---
+
+# 9. Reglas de calidad que el equipo debe adoptar
+
+## 9.1 Siempre enlazar trabajo
+Cada PR debe enlazar:
+- issue
+- spec
+
+## 9.2 Nada grande sin spec
+Todo cambio mediano o grande debe pasar por:
+- issue
+- spec
+- tareas
+- validación
+
+## 9.3 Diffs pequeños
+Evitar PRs gigantes cuando no son estrictamente necesarios.
+
+## 9.4 Validación explícita
+Nunca cerrar una tarea sin:
+- tests
+- lint
+- build
+- o explicación de por qué no aplica
+
+## 9.5 Documentación viva
+Cambios de comportamiento, arquitectura o reglas:
+- actualizar README, docs o changelog
+- registrar decisiones importantes en `docs/decisions/`
+
+---
+
+# 10. Setup de adopción por etapas
+
+## Etapa 1 — Base
+- README
+- CONTRIBUTING
+- SECURITY
+- CODEOWNERS
+- branch protection / rulesets
+- CI
+- `AGENTS.md`
+
+## Etapa 2 — Copilot repo-aware
+- `.github/copilot-instructions.md`
+- `.github/instructions/*.instructions.md`
+
+## Etapa 3 — Trabajo estructurado
+- `docs/specs/`
+- issues y PR templates
+- labels
+
+## Etapa 4 — Automatización cognitiva
+- `.github/skills/`
+- prompt files
+- custom agents
+
+## Etapa 5 — Delegación avanzada
+- cloud agent cuando esté disponible
+- flujos híbridos IDE + GitHub
+
+---
+
+# 11. Checklist de verificación
+
+## Repositorio
+- [ ] `AGENTS.md` existe
+- [ ] `.github/copilot-instructions.md` existe
+- [ ] `.github/instructions/` existe
+- [ ] `.github/skills/` existe
+- [ ] `.github/prompts/` o carpeta equivalente existe
+- [ ] `docs/specs/` existe
+- [ ] PR template existe
+- [ ] issue templates existen
+- [ ] CODEOWNERS existe
+- [ ] main está protegida
+- [ ] CI funciona
+
+## Flujo
+- [ ] el equipo sabe crear issues
+- [ ] el equipo sabe crear specs
+- [ ] el equipo sabe cuándo usar agent mode
+- [ ] el equipo sabe cuándo NO delegar a un agente
+- [ ] los PRs enlazan issue + spec
+- [ ] se revisa arquitectura y riesgos, no solo sintaxis
+
+## Copilot
+- [ ] repository instructions funcionan
+- [ ] path-specific instructions funcionan
+- [ ] las skills ya cubren 2 o 3 tareas repetidas
+- [ ] existe al menos un prompt reusable
+- [ ] existe al menos un custom agent útil si el entorno lo soporta
+
+---
+
+# 12. Recomendación final
+
+No intentes lanzar todas las superficies el mismo día.
+
+Orden recomendado:
+1. `AGENTS.md`
+2. `.github/copilot-instructions.md`
+3. `docs/specs/`
+4. `.github/instructions/`
+5. issue/PR templates
+6. `.github/skills/`
+7. prompt files
+8. custom agents
+9. cloud agent cuando esté disponible
+
+Ese orden evita automatizar el caos.
+
+---
+
+# 13. Siguiente paso recomendado
+
+Una vez aplicado este flujo:
+- crear el primer spec real
+- crear las primeras 2 skills:
+  - `implement-feature`
+  - `fix-bug`
+- crear 2 path-specific instructions:
+  - backend
+  - tests
+- probar el flujo completo en una iniciativa pequeña antes de escalarlo al resto del equipo
