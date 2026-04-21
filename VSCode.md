@@ -94,8 +94,34 @@ F1 -> "Snippets: Configure Snippets" -> Seleccionar lenguaje
 - ul#link Asingna el id link al ul
 - ul{contenido} agrega el contenido dentro de las llaves al contenido del ul
 - ul>li*4{contenido $} al contenido lo numera en orden del 1 al 4
-- 
-- 
+
+# Github Copilot
+
+## Paso 1 — Confirmar que Copilot está autenticado en VS Code
+Verificar que tu sesión de Copilot dentro del IDE está sana.
+- Abre la paleta de comandos: Ctrl + Shift + P
+- Luego ejecuta: GitHub Copilot: Status
+- Si no está autenticado, ejecutar: GitHub Copilot: Sign In
+
+## Paso 2 — Abrir Copilot Chat y verificar Agent Mode
+
+Comprobar que no estás solo en “chat básico”, sino que tienes disponible el modo agente en el IDE.
+- En la paleta de comandos: Ctrl + Shift + P
+- Ejecuta: Chat: Open Chat
+- Luego revisa en el panel derecho si puedes seleccionar un modo como: Ask, Edit, Agent, Plan. Un flujo experto típico es: Plan → Ask → Agent → Edit → Validate.
+
+## Paso 3 — Activar el uso de instruction files
+Asegurarnos de que Copilot va a leer instrucciones persistentes del proyecto.
+- Abre Settings en VS Code: Ctrl + ,
+- En la caja de búsqueda escribe: instruction file
+- Luego verifica que esté activada la opción equivalente a: Code Generation: Use Instruction Files.
+GitHub documenta que las custom instructions para Copilot Chat pueden habilitarse o deshabilitarse desde el IDE buscando instruction file en Settings.
+
+*Por qué hacerlo:* Sin esto, puedes crear archivos de instrucciones y pensar que Copilot los está usando cuando en realidad no los está leyendo.
+*Cómo verificar:* La opción debe quedar marcada/activa
+
+
+
 
   
   
