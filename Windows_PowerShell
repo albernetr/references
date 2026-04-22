@@ -1,0 +1,11 @@
+
+\AppData\Local\Programs\Ollama
+
+## Instalar Ollama en el repositorio local
+- opción 1
+irm https://ollama.com/install.ps1 | iex
+
+- opción 2
+irm https://ollama.com/install.ps1 -OutFile install.ps1
+notepad install.ps1   # o code install.ps1
+.\install.ps1
