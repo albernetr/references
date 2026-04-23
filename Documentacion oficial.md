@@ -21,3 +21,10 @@ https://platform.claude.com/docs/es/intro
 https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
 https://www.anthropic.com/learn
 https://anthropic.skilljar.com/claude-101
+https://code.claude.com/docs/en/microsoft-foundry
+
+# LM Studio Developer Docs
+https://lmstudio.ai/docs/developer
+
+# Dcoker
+https://docs.docker.com/desktop/setup/install/windows-install/
