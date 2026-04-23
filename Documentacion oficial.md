@@ -5,6 +5,19 @@ https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
 https://github.com/agentskills/agentskills
 https://github.com/anthropics/skills
 https://github.com/github/awesome-copilot
+https://education.github.com/pack
+
 
 # Agentes
 https://agentskills.io/home
+https://awesome-copilot.github.com/
+
+# Vercel
+https://vercel.com/login
+
+# Claude
+https://platform.claude.com/dashboard
+https://platform.claude.com/docs/es/intro
+https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
+https://www.anthropic.com/learn
+https://anthropic.skilljar.com/claude-101
