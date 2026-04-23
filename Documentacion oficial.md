@@ -28,3 +28,4 @@ https://lmstudio.ai/docs/developer
 
 # Dcoker
 https://docs.docker.com/desktop/setup/install/windows-install/
+https://app.docker.com/accounts/
